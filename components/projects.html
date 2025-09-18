@@ -1,0 +1,266 @@
+<div class="partners-container">
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-title" data-i18n="partnersProgram">Партнерская программа</h1>
+        <div class="page-subtitle" data-i18n="partnersSubtitle">
+            12-уровневая структура без переливов и техмест
+        </div>
+    </header>
+
+    <!-- Level Selector -->
+    <section class="level-selector-section">
+        <div class="level-selector-card">
+            <h2 class="section-title" data-i18n="selectLevel">Выберите уровень</h2>
+            
+            <div class="levels-tabs horizontal-scroll">
+                <button class="level-tab active" data-level="1">
+                    <div class="tab-number">1</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="2">
+                    <div class="tab-number">2</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="3">
+                    <div class="tab-number">3</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="4">
+                    <div class="tab-number">4</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="5">
+                    <div class="tab-number">5</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="6">
+                    <div class="tab-number">6</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="7">
+                    <div class="tab-number">7</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="8">
+                    <div class="tab-number">8</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="9">
+                    <div class="tab-number">9</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="10">
+                    <div class="tab-number">10</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="11">
+                    <div class="tab-number">11</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+                <button class="level-tab" data-level="12">
+                    <div class="tab-number">12</div>
+                    <div class="tab-label" data-i18n="level">Уровень</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Table -->
+    <section class="partners-table-section">
+        <div class="partners-table-card">
+            <div class="table-header">
+                <h2 id="level-counter" class="section-title">Уровень 1: 0 партнеров</h2>
+                <div class="table-actions">
+                    <input type="text" id="partner-search" placeholder="Поиск по ID или адресу..." class="search-input">
+                    <button id="export-partners-btn" class="action-btn secondary">
+                        <span data-i18n="exportData">Экспорт</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="partners-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="number">№</th>
+                            <th data-i18n="userId">ID</th>
+                            <th data-i18n="address">Адрес</th>
+                            <th data-i18n="sponsorId">ID спонсора</th>
+                            <th data-i18n="activationDate">Дата активации</th>
+                            <th data-i18n="maxLevel">Уровень</th>
+                            <th data-i18n="qualification">Квалификация</th>
+                        </tr>
+                    </thead>
+                    <tbody id="partners-table-body">
+                        <tr class="no-data">
+                            <td colspan="7" data-i18n="loadingPartners">Загрузка партнеров...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-pagination">
+                <div class="pagination-info">
+                    <span data-i18n="showing">Показано:</span>
+                    <span id="showing-count">0</span>
+                    <span data-i18n="of">из</span>
+                    <span id="total-count">0</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="prev-partners-btn" class="pagination-btn" disabled>‹ Назад</button>
+                    <span class="pagination-current">
+                        <span id="current-partners-page">1</span> / <span id="total-partners-pages">1</span>
+                    </span>
+                    <button id="next-partners-btn" class="pagination-btn" disabled>Вперед ›</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Statistics -->
+    <section class="team-stats-section">
+        <div class="team-stats-card">
+            <h2 class="section-title" data-i18n="teamStatistics">Статистика команды</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="personalPartners">Личные партнеры</div>
+                        <div class="stat-value" id="personal-partners-count">0</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="activePartners">Активные партнеры</div>
+                        <div class="stat-value" id="active-partners-count">0</div>
+                        <div class="stat-help" data-i18n="activePartnersHelp">(≥2 уровня)</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="totalTeam">Всего в команде</div>
+                        <div class="stat-value" id="total-team-count">0</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="teamVolume">Объем команды</div>
+                        <div class="stat-value" id="team-volume">0 BNB</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualification Info -->
+    <section class="qualification-section">
+        <div class="qualification-card">
+            <h2 class="section-title" data-i18n="qualifications">Квалификации</h2>
+            
+            <div class="qualification-grid">
+                <div class="qualification-item">
+                    <div class="qualification-badge bronze">
+                        <div class="badge-icon">🥉</div>
+                        <div class="badge-name" data-i18n="bronze">Бронза</div>
+                    </div>
+                    <div class="qualification-requirements">
+                        <div class="requirement" data-i18n="bronzeReq1">2+ личных партнера</div>
+                        <div class="requirement" data-i18n="bronzeReq2">Каждый с 2+ партнерами и 4+ уровнями</div>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <div class="qualification-badge silver">
+                        <div class="badge-icon">🥈</div>
+                        <div class="badge-name" data-i18n="silver">Серебро</div>
+                    </div>
+                    <div class="qualification-requirements">
+                        <div class="requirement" data-i18n="silverReq1">3+ личных партнера</div>
+                        <div class="requirement" data-i18n="silverReq2">Каждый с 3+ партнерами и 5+ уровнями</div>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <div class="qualification-badge gold">
+                        <div class="badge-icon">🥇</div>
+                        <div class="badge-name" data-i18n="gold">Золото</div>
+                    </div>
+                    <div class="qualification-requirements">
+                        <div class="requirement" data-i18n="goldReq1">5+ личных партнеров</div>
+                        <div class="requirement" data-i18n="goldReq2">Каждый с 3+ партнерами и 6+ уровнями</div>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <div class="qualification-badge platinum">
+                        <div class="badge-icon">💎</div>
+                        <div class="badge-name" data-i18n="platinum">Платина</div>
+                    </div>
+                    <div class="qualification-requirements">
+                        <div class="requirement" data-i18n="platinumReq1">10+ личных партнеров</div>
+                        <div class="requirement" data-i18n="platinumReq2">Каждый с 5+ партнерами и 7+ уровнями</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Level Info -->
+    <section class="current-level-section">
+        <div class="current-level-card">
+            <h2 class="section-title" data-i18n="currentLevelInfo">Информация о текущем уровне</h2>
+            
+            <div class="level-info-grid">
+                <div class="info-item">
+                    <div class="info-label" data-i18n="currentLevel">Текущий уровень:</div>
+                    <div class="info-value" id="user-current-level">-</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label" data-i18n="levelCost">Стоимость уровня:</div>
+                    <div class="info-value" id="level-cost">-</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label" data-i18n="qualification">Квалификация:</div>
+                    <div class="info-value" id="user-qualification">
+                        <span class="qualification-badge-mini">Расчет...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="earnings-breakdown">
+                <h3 class="breakdown-title" data-i18n="earningsBreakdown">Общие доходы</h3>
+                <div class="earnings-list">
+                    <div class="earning-row">
+                        <span class="earning-label" data-i18n="directBonus">Прямой бонус:</span>
+                        <span class="earning-amount" id="direct-bonus">0 BNB</span>
+                    </div>
+                    <div class="earning-row">
+                        <span class="earning-label" data-i18n="partnerBonus">Партнерский бонус:</span>
+                        <span class="earning-amount" id="partner-bonus">0 BNB</span>
+                    </div>
+                    <div class="earning-row">
+                        <span class="earning-label" data-i18n="matrixBonus">Матричный бонус:</span>
+                        <span class="earning-amount" id="matrix-bonus">0 BNB</span>
+                    </div>
+                    <div class="earning-row">
+                        <span class="earning-label" data-i18n="leadershipBonus">Бонус за лидерство:</span>
+                        <span class="earning-amount" id="leadership-bonus">0 BNB</span>
+                    </div>
+                    <div class="earning-row total">
+                        <span class="earning-label" data-i18n="totalEarned">Всего заработал:</span>
+                        <span class="earning-amount" id="total-partner-earnings">0 BNB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
