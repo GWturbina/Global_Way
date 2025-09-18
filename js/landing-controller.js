@@ -40,7 +40,7 @@ class LandingController {
     
     setupEventListeners() {
         // Planet click handlers with modal
-        document.querySelectorAll('.planet-wrapper').forEach((planet, index) => {
+        document.querySelectorAll('.planet-wrapper').forEach((planet) => {
             planet.addEventListener('click', () => {
                 this.showPlanetModal(planet);
             });
@@ -69,9 +69,9 @@ class LandingController {
         if (!planetClass) return;
         
         const i18n = window.i18n;
-        if (!i18n) return;
+        if (!i18n || !i18n.translations) return;
         
-        const planetData = i18n.translate(planetClass);
+        const planetData = i18n.translations[planetClass];
         if (!planetData || !planetData.title) return;
         
         // Создаем модальное окно
