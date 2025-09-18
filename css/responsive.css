@@ -1,0 +1,197 @@
+/* Mobile First Approach */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .planet-image {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .gwt-coin-image {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .planet-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .gwt-coin-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .modal-content {
+        width: 80%;
+        max-width: 600px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .planets-container {
+        width: 70%;
+        height: 70%;
+        max-width: 900px;
+        max-height: 700px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .planets-container {
+        max-width: 1000px;
+        max-height: 750px;
+    }
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 767px) {
+    .landing-container {
+        padding: 20px;
+    }
+    
+    .planets-container {
+        width: 90%;
+        height: 60%;
+    }
+    
+    .planet-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .gwt-coin-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .gwt-coin-container {
+        bottom: 20px;
+    }
+    
+    .coin-label {
+        font-size: var(--font-size-md);
+        min-width: 120px;
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    .language-switcher {
+        top: 10px;
+        right: 10px;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .lang-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xs);
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: var(--spacing-lg);
+    }
+    
+    .modal-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    /* Adjusted planet positions for mobile */
+    .planet-wrapper[data-planet="club"] {
+        top: 10%;
+        left: 5%;
+    }
+    
+    .planet-wrapper[data-planet="mission"] {
+        top: 5%;
+        right: 10%;
+    }
+    
+    .planet-wrapper[data-planet="goals"] {
+        top: 45%;
+        left: 0%;
+    }
+    
+    .planet-wrapper[data-planet="roadmap"] {
+        top: 55%;
+        right: 15%;
+    }
+    
+    .planet-wrapper[data-planet="projects"] {
+        top: 25%;
+        right: 0%;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 375px) {
+    .planet-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .gwt-coin-image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .coin-label {
+        font-size: var(--font-size-sm);
+        min-width: 100px;
+    }
+    
+    .planets-container {
+        width: 95%;
+        height: 55%;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .planet-image,
+    .gwt-coin-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .landing-container {
+        height: 100vh;
+    }
+    
+    .planets-container {
+        width: 80%;
+        height: 70%;
+    }
+    
+    .gwt-coin-container {
+        bottom: 10px;
+    }
+    
+    .language-switcher {
+        flex-direction: row;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .planet-wrapper {
+        animation: none;
+    }
+    
+    .gwt-coin-image {
+        animation: none;
+    }
+    
+    * {
+        transition-duration: 0.01s !important;
+        animation-duration: 0.01s !important;
+    }
+}
