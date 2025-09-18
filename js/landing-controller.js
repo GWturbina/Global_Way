@@ -6,70 +6,99 @@ class LandingController {
     }
     
     init() {
-        this.setupPlanets();
-        this.setupEventListeners();
-        this.isInitialized = true;
-        console.log('Landing Controller initialized');
+        // Ждем загрузки DOM
+        setTimeout(() => {
+            this.setupPlanets();
+            this.setupEventListeners();
+            this.isInitialized = true;
+            console.log('Landing Controller initialized');
+        }, 100);
     }
     
     setupPlanets() {
         const planetElements = document.querySelectorAll('.planet-wrapper');
+        console.log('Found planets:', planetElements.length);
         
         planetElements.forEach((planet, index) => {
-            const planetData = {
-                element: planet,
-                originalX: Math.random() * window.innerWidth,
-                originalY: Math.random() * window.innerHeight,
-                speedX: (Math.random() - 0.5) * 2,
-                speedY: (Math.random() - 0.5) * 2,
-                rotationSpeed: (Math.random() - 0.5) * 4
-            };
+            // Позиционирование планет
+            const positions = [
+                { left: '15%', top: '20%' }, // Club
+                { left: '70%', top: '15%' }, // Mission
+                { left: '10%', top: '60%' }, // Goals
+                { left: '75%', top: '70%' }, // Roadmap
+                { left: '45%', top: '10%' }  // Projects
+            ];
             
-            planet.style.left = planetData.originalX + 'px';
-            planet.style.top = planetData.originalY + 'px';
-            
-            this.planets.push(planetData);
+            if (positions[index]) {
+                planet.style.position = 'fixed';
+                planet.style.left = positions[index].left;
+                planet.style.top = positions[index].top;
+                planet.style.zIndex = '10';
+            }
         });
-        
-        this.startPlanetAnimation();
-    }
-    
-    startPlanetAnimation() {
-        setInterval(() => {
-            this.planets.forEach(planet => {
-                let x = parseFloat(planet.element.style.left);
-                let y = parseFloat(planet.element.style.top);
-                
-                x += planet.speedX;
-                y += planet.speedY;
-                
-                // Bounce off edges
-                if (x <= 0 || x >= window.innerWidth - 120) {
-                    planet.speedX *= -1;
-                }
-                if (y <= 0 || y >= window.innerHeight - 120) {
-                    planet.speedY *= -1;
-                }
-                
-                planet.element.style.left = Math.max(0, Math.min(window.innerWidth - 120, x)) + 'px';
-                planet.element.style.top = Math.max(0, Math.min(window.innerHeight - 120, y)) + 'px';
-            });
-        }, 50);
     }
     
     setupEventListeners() {
-        // Planet hover effects
-        document.querySelectorAll('.planet-wrapper').forEach(planet => {
+        // Planet click handlers with modal
+        document.querySelectorAll('.planet-wrapper').forEach((planet, index) => {
+            planet.addEventListener('click', () => {
+                this.showPlanetModal(planet);
+            });
+            
+            // Hover effects
             planet.addEventListener('mouseenter', () => {
-                planet.querySelector('.planet-info').style.opacity = '1';
+                const info = planet.querySelector('.planet-info');
+                if (info) {
+                    info.style.opacity = '1';
+                    info.style.transform = 'scale(1)';
+                }
             });
             
             planet.addEventListener('mouseleave', () => {
-                planet.querySelector('.planet-info').style.opacity = '0';
+                const info = planet.querySelector('.planet-info');
+                if (info) {
+                    info.style.opacity = '0';
+                    info.style.transform = 'scale(0.8)';
+                }
             });
+        });
+    }
+    
+    showPlanetModal(planetElement) {
+        const planetClass = planetElement.className.match(/planet-(\w+)/)?.[1];
+        if (!planetClass) return;
+        
+        const i18n = window.i18n;
+        if (!i18n) return;
+        
+        const planetData = i18n.translate(planetClass);
+        if (!planetData || !planetData.title) return;
+        
+        // Создаем модальное окно
+        const modal = document.createElement('div');
+        modal.className = 'planet-modal';
+        modal.innerHTML = `
+            <div class="planet-modal-content">
+                <span class="planet-modal-close">&times;</span>
+                <h2 class="planet-modal-title">${planetData.title}</h2>
+                <p class="planet-modal-text">${planetData.text}</p>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+        
+        // Обработчик закрытия
+        modal.querySelector('.planet-modal-close').addEventListener('click', () => {
+            modal.remove();
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
         });
     }
 }
 
-// Export for global use
 window.LandingController = LandingController;
