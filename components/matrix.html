@@ -1,0 +1,256 @@
+<div class="matrix-container">
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-title" data-i18n="matrixProgram">Матричная программа</h1>
+        <div class="page-subtitle" data-i18n="matrixSubtitle">
+            Бинарная матрица 1:2 с интерактивной визуализацией
+        </div>
+    </header>
+
+    <!-- Matrix Level Selector -->
+    <section class="matrix-level-section">
+        <div class="matrix-level-card">
+            <h2 class="section-title" data-i18n="selectMatrixLevel">Выберите уровень матрицы</h2>
+            
+            <div class="matrix-levels-tabs horizontal-scroll">
+                <button class="matrix-level-tab active" data-matrix-level="1">1</button>
+                <button class="matrix-level-tab" data-matrix-level="2">2</button>
+                <button class="matrix-level-tab" data-matrix-level="3">3</button>
+                <button class="matrix-level-tab" data-matrix-level="4">4</button>
+                <button class="matrix-level-tab" data-matrix-level="5">5</button>
+                <button class="matrix-level-tab" data-matrix-level="6">6</button>
+                <button class="matrix-level-tab" data-matrix-level="7">7</button>
+                <button class="matrix-level-tab" data-matrix-level="8">8</button>
+                <button class="matrix-level-tab" data-matrix-level="9">9</button>
+                <button class="matrix-level-tab" data-matrix-level="10">10</button>
+                <button class="matrix-level-tab" data-matrix-level="11">11</button>
+                <button class="matrix-level-tab" data-matrix-level="12">12</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Matrix Visualization -->
+    <section class="matrix-visualization-section">
+        <div class="matrix-visualization-card">
+            <div class="visualization-header">
+                <h2 class="section-title" data-i18n="matrixVisualization">Интерактивная матрица</h2>
+                <div class="matrix-controls">
+                    <input type="text" id="matrix-search" placeholder="Поиск по ID..." class="search-input">
+                    <button id="center-user-btn" class="action-btn secondary">
+                        <span data-i18n="centerOnUser">По центру</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Matrix Tree -->
+            <div class="matrix-tree-container">
+                <div id="matrix-tree" class="matrix-tree">
+                    <!-- Level 1 (Root) -->
+                    <div class="matrix-level" data-level="0">
+                        <div class="matrix-position user-position" data-position="1">
+                            <div class="position-content">
+                                <div class="position-id">YOU</div>
+                                <div class="position-level">1</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Level 2 -->
+                    <div class="matrix-level" data-level="1">
+                        <div class="matrix-position available" data-position="2">
+                            <div class="position-content">
+                                <div class="position-id">+</div>
+                                <div class="position-level">-</div>
+                            </div>
+                        </div>
+                        <div class="matrix-position available" data-position="3">
+                            <div class="position-content">
+                                <div class="position-id">+</div>
+                                <div class="position-level">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Level 3 -->
+                    <div class="matrix-level" data-level="2">
+                        <div class="matrix-position blocked" data-position="4">
+                            <div class="position-content">
+                                <div class="position-id">×</div>
+                                <div class="position-level">-</div>
+                            </div>
+                        </div>
+                        <div class="matrix-position available" data-position="5">
+                            <div class="position-content">
+                                <div class="position-id">+</div>
+                                <div class="position-level">-</div>
+                            </div>
+                        </div>
+                        <div class="matrix-position charity" data-position="6">
+                            <div class="position-content">
+                                <div class="position-id">C001</div>
+                                <div class="position-level">4</div>
+                            </div>
+                        </div>
+                        <div class="matrix-position tech" data-position="7">
+                            <div class="position-content">
+                                <div class="position-id">T001</div>
+                                <div class="position-level">2</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Level 4 -->
+                    <div class="matrix-level" data-level="3">
+                        <div class="matrix-position available" data-position="8"></div>
+                        <div class="matrix-position available" data-position="9"></div>
+                        <div class="matrix-position available" data-position="10"></div>
+                        <div class="matrix-position available" data-position="11"></div>
+                        <div class="matrix-position available" data-position="12"></div>
+                        <div class="matrix-position available" data-position="13"></div>
+                        <div class="matrix-position available" data-position="14"></div>
+                        <div class="matrix-position available" data-position="15"></div>
+                    </div>
+                </div>
+                
+                <!-- Matrix Legend -->
+                <div class="matrix-legend">
+                    <div class="legend-item">
+                        <div class="legend-color active"></div>
+                        <span data-i18n="activeUser">Активный пользователь</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color available"></div>
+                        <span data-i18n="availablePlace">Доступное место</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color blocked"></div>
+                        <span data-i18n="blockedPlace">Заблокированное</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color charity"></div>
+                        <span data-i18n="charityPlace">Благотворительность</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color tech"></div>
+                        <span data-i18n="techPlace">Техническое место</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matrix Team Structure -->
+    <section class="matrix-team-section">
+        <div class="matrix-team-card">
+            <div class="team-header">
+                <h2 class="section-title" data-i18n="matrixTeamStructure">Структура команды матрицы</h2>
+                <div class="team-level-selector">
+                    <label for="team-level-select" data-i18n="selectTeamLevel">Уровень команды:</label>
+                    <select id="team-level-select" class="level-select">
+                        <option value="1">1 уровень</option>
+                        <option value="2">2 уровень</option>
+                        <option value="3">3 уровень</option>
+                        <option value="4">4 уровень</option>
+                        <option value="5">5 уровень</option>
+                        <option value="6">6 уровень</option>
+                        <option value="7">7 уровень</option>
+                        <option value="8">8 уровень</option>
+                        <option value="9">9 уровень</option>
+                        <option value="10">10 уровень</option>
+                        <option value="11">11 уровень</option>
+                        <option value="12">12 уровень</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="team-table-container">
+                <table class="matrix-team-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="number">№</th>
+                            <th data-i18n="userId">ID</th>
+                            <th data-i18n="address">Адрес</th>
+                            <th data-i18n="sponsorId">ID спонсора</th>
+                            <th data-i18n="activationDate">Дата активации</th>
+                            <th data-i18n="level">Уровень</th>
+                            <th data-i18n="qualification">Квалификация</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-team-body">
+                        <tr class="no-data">
+                            <td colspan="7" data-i18n="loadingMatrix">Загрузка матричной команды...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matrix Statistics -->
+    <section class="matrix-stats-section">
+        <div class="matrix-stats-card">
+            <h2 class="section-title" data-i18n="matrixStatistics">Статистика матрицы</h2>
+            
+            <div class="matrix-stats-grid">
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="totalActivePositions">Всего активных позиций</div>
+                        <div class="stat-value" id="total-active-positions">0</div>
+                    </div>
+                </div>
+                
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="personalPartners">Партнеры</div>
+                        <div class="stat-value" id="matrix-partners">0</div>
+                    </div>
+                </div>
+                
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">🏥</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="charityPlaces">Благотворительность</div>
+                        <div class="stat-value" id="charity-places">0</div>
+                    </div>
+                </div>
+                
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="techPlaces">Технические места</div>
+                        <div class="stat-value" id="tech-places">0</div>
+                    </div>
+                </div>
+                
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="matrixEarnings">Доходы с матрицы</div>
+                        <div class="stat-value" id="matrix-earnings">0 BNB</div>
+                    </div>
+                </div>
+                
+                <div class="matrix-stat-item">
+                    <div class="stat-icon">🔄</div>
+                    <div class="stat-content">
+                        <div class="stat-label" data-i18n="cycleCount">Количество циклов</div>
+                        <div class="stat-value" id="cycle-count">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Position Details Modal -->
+    <div id="position-modal" class="modal">
+        <div class="modal-content cosmic-modal">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title" data-i18n="positionDetails">Детали позиции</h2>
+            <div id="position-details" class="position-details-content">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
