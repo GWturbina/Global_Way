@@ -1,0 +1,137 @@
+/* Planet Movement Animations */
+@keyframes planetFloat1 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(30px, -20px) rotate(90deg); }
+    50% { transform: translate(-10px, -40px) rotate(180deg); }
+    75% { transform: translate(-40px, 10px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes planetFloat2 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-25px, 35px) rotate(120deg); }
+    66% { transform: translate(45px, 15px) rotate(240deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes planetFloat3 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(20px, 30px) rotate(72deg); }
+    40% { transform: translate(-30px, 20px) rotate(144deg); }
+    60% { transform: translate(-20px, -25px) rotate(216deg); }
+    80% { transform: translate(35px, -15px) rotate(288deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes planetFloat4 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    30% { transform: translate(-35px, -10px) rotate(108deg); }
+    60% { transform: translate(25px, -35px) rotate(216deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes planetFloat5 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    40% { transform: translate(40px, 25px) rotate(144deg); }
+    80% { transform: translate(-25px, -30px) rotate(288deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* Coin Pulse Animation */
+@keyframes coinPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 8px 16px rgba(0, 0, 0, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+/* Planet Assignment via CSS Classes */
+.planet-wrapper[data-planet="club"] {
+    animation: planetFloat1 15s ease-in-out infinite;
+    top: 20%;
+    left: 15%;
+}
+
+.planet-wrapper[data-planet="mission"] {
+    animation: planetFloat2 18s ease-in-out infinite;
+    top: 10%;
+    right: 20%;
+}
+
+.planet-wrapper[data-planet="goals"] {
+    animation: planetFloat3 12s ease-in-out infinite;
+    top: 60%;
+    left: 10%;
+}
+
+.planet-wrapper[data-planet="roadmap"] {
+    animation: planetFloat4 20s ease-in-out infinite;
+    top: 70%;
+    right: 25%;
+}
+
+.planet-wrapper[data-planet="projects"] {
+    animation: planetFloat5 16s ease-in-out infinite;
+    top: 35%;
+    right: 10%;
+}
+
+/* Hover Pause Animation */
+.planet-wrapper:hover {
+    animation-play-state: paused;
+}
+
+/* Fade In Animation for Page Load */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.landing-container {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Modal Animations */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border-inactive);
+    border-top: 3px solid var(--color-primary-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Text Glow Effect */
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    50% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+}
+
+.text-glow {
+    animation: textGlow 2s ease-in-out infinite;
+}
