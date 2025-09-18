@@ -1,0 +1,282 @@
+<div class="admin-container">
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-title" data-i18n="adminPanel">Административная панель</h1>
+        <div class="page-subtitle" data-i18n="adminSubtitle">
+            Управление системой GlobalWay
+        </div>
+        <div class="admin-warning">
+            ⚠️ <span data-i18n="adminAccess">Доступ ограничен администраторами</span>
+        </div>
+    </header>
+
+    <!-- System Stats -->
+    <section class="system-stats-section">
+        <div class="system-stats-card">
+            <h2 class="section-title" data-i18n="systemStatistics">Системная статистика</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-users">0</div>
+                        <div class="stat-label" data-i18n="totalUsers">Всего пользователей</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="active-users">0</div>
+                        <div class="stat-label" data-i18n="activeUsers">Активные пользователи</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-volume">0 BNB</div>
+                        <div class="stat-label" data-i18n="totalVolume">Общий объем</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🪙</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="circulating-tokens">0 GWT</div>
+                        <div class="stat-label" data-i18n="circulatingTokens">Токенов в обороте</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Management -->
+    <section class="contract-management-section">
+        <div class="contract-management-card">
+            <h2 class="section-title" data-i18n="contractManagement">Управление контрактами</h2>
+            
+            <div class="contracts-grid">
+                <div class="contract-item">
+                    <div class="contract-header">
+                        <h3 class="contract-name">GlobalWay</h3>
+                        <div class="contract-address">0x64De05a0c818a925711EA0874FD972Bdc2edb2aA</div>
+                    </div>
+                    <div class="contract-actions">
+                        <button class="action-btn secondary" onclick="copyToClipboard('0x64De05a0c818a925711EA0874FD972Bdc2edb2aA')">
+                            <span data-i18n="copyAddress">Копировать</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="openExplorer('0x64De05a0c818a925711EA0874FD972Bdc2edb2aA')">
+                            <span data-i18n="viewExplorer">Explorer</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contract-item">
+                    <div class="contract-header">
+                        <h3 class="contract-name">GlobalWayStats</h3>
+                        <div class="contract-address">0xEa4F7F9e1c21Ad766B64D07dC9CB137C1b06Dfa4</div>
+                    </div>
+                    <div class="contract-actions">
+                        <button class="action-btn secondary" onclick="copyToClipboard('0xEa4F7F9e1c21Ad766B64D07dC9CB137C1b06Dfa4')">
+                            <span data-i18n="copyAddress">Копировать</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="openExplorer('0xEa4F7F9e1c21Ad766B64D07dC9CB137C1b06Dfa4')">
+                            <span data-i18n="viewExplorer">Explorer</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="contract-item">
+                    <div class="contract-header">
+                        <h3 class="contract-name">GWT Token</h3>
+                        <div class="contract-address">0x5Bf1b9edD3914f546AC02cf35CC285E640Cb68Fc</div>
+                    </div>
+                    <div class="contract-actions">
+                        <button class="action-btn secondary" onclick="copyToClipboard('0x5Bf1b9edD3914f546AC02cf35CC285E640Cb68Fc')">
+                            <span data-i18n="copyAddress">Копировать</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="openExplorer('0x5Bf1b9edD3914f546AC02cf35CC285E640Cb68Fc')">
+                            <span data-i18n="viewExplorer">Explorer</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Management -->
+    <section class="user-management-section">
+        <div class="user-management-card">
+            <h2 class="section-title" data-i18n="userManagement">Управление пользователями</h2>
+            
+            <div class="user-search">
+                <input type="text" id="admin-user-search" placeholder="Поиск по адресу или ID..." class="search-input">
+                <button id="search-user-btn" class="action-btn secondary">
+                    <span data-i18n="search">Поиск</span>
+                </button>
+            </div>
+            
+            <div class="user-table-container">
+                <table class="admin-users-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="userId">ID</th>
+                            <th data-i18n="address">Адрес</th>
+                            <th data-i18n="registrationDate">Дата регистрации</th>
+                            <th data-i18n="maxLevel">Макс. уровень</th>
+                            <th data-i18n="totalEarned">Заработано</th>
+                            <th data-i18n="activity">Активность</th>
+                            <th data-i18n="actions">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-users-body">
+                        <tr class="no-data">
+                            <td colspan="7" data-i18n="loadingUsers">Загрузка пользователей...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Management -->
+    <section class="token-admin-section">
+        <div class="token-admin-card">
+            <h2 class="section-title" data-i18n="tokenManagement">Управление токенами</h2>
+            
+            <div class="token-admin-actions">
+                <div class="admin-action-group">
+                    <h3 class="action-title" data-i18n="tokenDistribution">Распределение токенов</h3>
+                    <div class="action-controls">
+                        <input type="text" id="distribution-address" placeholder="Адрес получателя" class="admin-input">
+                        <input type="number" id="distribution-amount" placeholder="Количество GWT" class="admin-input">
+                        <button id="distribute-tokens-btn" class="action-btn primary">
+                            <span data-i18n="distributeTokens">Распределить</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-action-group">
+                    <h3 class="action-title" data-i18n="tradingControl">Управление торговлей</h3>
+                    <div class="action-controls">
+                        <button id="enable-trading-btn" class="action-btn secondary">
+                            <span data-i18n="enableTrading">Включить торговлю</span>
+                        </button>
+                        <button id="disable-trading-btn" class="action-btn secondary">
+                            <span data-i18n="disableTrading">Отключить торговлю</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-action-group">
+                    <h3 class="action-title" data-i18n="emergencyFunctions">Экстренные функции</h3>
+                    <div class="action-controls">
+                        <button id="pause-contract-btn" class="action-btn warning">
+                            <span data-i18n="pauseContract">Приостановить контракт</span>
+                        </button>
+                        <button id="unpause-contract-btn" class="action-btn primary">
+                            <span data-i18n="unpauseContract">Возобновить контракт</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Logs -->
+    <section class="system-logs-section">
+        <div class="system-logs-card">
+            <h2 class="section-title" data-i18n="systemLogs">Системные логи</h2>
+            
+            <div class="logs-controls">
+                <select id="log-type" class="log-select">
+                    <option value="all" data-i18n="allLogs">Все логи</option>
+                    <option value="registration" data-i18n="registrationLogs">Регистрации</option>
+                    <option value="levels" data-i18n="levelLogs">Покупка уровней</option>
+                    <option value="tokens" data-i18n="tokenLogs">Токены</option>
+                    <option value="errors" data-i18n="errorLogs">Ошибки</option>
+                </select>
+                <button id="refresh-logs-btn" class="action-btn secondary">
+                    <span data-i18n="refreshLogs">Обновить</span>
+                </button>
+                <button id="export-logs-btn" class="action-btn secondary">
+                    <span data-i18n="exportLogs">Экспорт</span>
+                </button>
+            </div>
+            
+            <div class="logs-container">
+                <div id="logs-content" class="logs-content">
+                    <div class="log-entry">
+                        <span class="log-time">2025-09-17 15:30:15</span>
+                        <span class="log-type info">INFO</span>
+                        <span class="log-message">System initialized successfully</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="log-time">2025-09-17 15:29:42</span>
+                        <span class="log-type success">SUCCESS</span>
+                        <span class="log-message">User 1234567 registered with sponsor 1234566</span>
+                    </div>
+                    <div class="log-entry">
+                        <span class="log-time">2025-09-17 15:28:31</span>
+                        <span class="log-type warning">WARN</span>
+                        <span class="log-message">High gas price detected: 0.5 Gwei</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Dashboard -->
+    <section class="analytics-section">
+        <div class="analytics-card">
+            <h2 class="section-title" data-i18n="analytics">Аналитика</h2>
+            
+            <div class="analytics-tabs">
+                <button class="analytics-tab active" data-tab="daily">
+                    <span data-i18n="daily">Дневная</span>
+                </button>
+                <button class="analytics-tab" data-tab="weekly">
+                    <span data-i18n="weekly">Недельная</span>
+                </button>
+                <button class="analytics-tab" data-tab="monthly">
+                    <span data-i18n="monthly">Месячная</span>
+                </button>
+            </div>
+            
+            <div class="analytics-content">
+                <div class="analytics-metrics">
+                    <div class="metric-item">
+                        <div class="metric-label" data-i18n="newRegistrations">Новые регистрации</div>
+                        <div class="metric-value" id="new-registrations">0</div>
+                        <div class="metric-change positive">+0%</div>
+                    </div>
+                    
+                    <div class="metric-item">
+                        <div class="metric-label" data-i18n="levelsPurchased">Купленные уровни</div>
+                        <div class="metric-value" id="levels-purchased">0</div>
+                        <div class="metric-change positive">+0%</div>
+                    </div>
+                    
+                    <div class="metric-item">
+                        <div class="metric-label" data-i18n="volumeGenerated">Объем оборота</div>
+                        <div class="metric-value" id="volume-generated">0 BNB</div>
+                        <div class="metric-change positive">+0%</div>
+                    </div>
+                    
+                    <div class="metric-item">
+                        <div class="metric-label" data-i18n="tokensTraded">Торговля токенами</div>
+                        <div class="metric-value" id="tokens-traded">0 GWT</div>
+                        <div class="metric-change neutral">0%</div>
+                    </div>
+                </div>
+                
+                <div class="chart-placeholder">
+                    <div class="chart-message" data-i18n="chartPlaceholder">
+                        График аналитики будет добавлен в следующих версиях
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
