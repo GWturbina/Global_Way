@@ -18,6 +18,31 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Landing Page Styles */
+.landing-page {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.landing-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cosmic-background {
+    background: url('../assets/images/background.jpg') center/cover no-repeat,
+                linear-gradient(135deg, #0a0a2e 0%, #16213e 25%, #0f3460 50%, #16213e 75%, #0a0a2e 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
 /* Planet Modal */
 .planet-modal {
     display: none;
@@ -73,28 +98,6 @@ html {
 @keyframes modalFadeIn {
     from { opacity: 0; transform: translateY(-50px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* Landing Page Styles */
-.landing-page {
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.landing-container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cosmic-background {
-    background: url('../assets/images/background.jpg') center/cover, 
-                linear-gradient(135deg, #0a0a2e 0%, #16213e 25%, #0f3460 50%, #16213e 75%, #0a0a2e 100%);
-    background-attachment: fixed;
 }
 
 /* Language Switcher */
