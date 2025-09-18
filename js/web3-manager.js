@@ -1,75 +1,4 @@
-// Добавить в самое начало файла
-window.SafePalIntegration = window.SafePalIntegration || class SafePalIntegration {
-    constructor() {
-        console.log('SafePal Integration placeholder loaded');
-    }
-    
-    async detectAndConnect() {
-        console.log('SafePal connection - demo mode');
-        return null;
-    }
-    
-    getCurrentAccount() {
-        return null;
-    }
-    
-    getWeb3() {
-        return null;
-    }
-    
-    async getBalance() {
-        return '0';
-    }
-    
-    async checkPreviousConnection() {
-        return false;
-    }
-};
-
 // Web3 Integration for GlobalWay DApp
-class SafePalIntegration {
-    constructor() {
-        this.web3 = null;
-        this.currentAccount = null;
-        this.isConnected = false;
-        
-        // opBNB network configuration
-        this.opBNBConfig = {
-            chainId: '0xCC', // 204 in hex
-            chainName: 'opBNB Mainnet',
-            rpcUrls: ['https://opbnb-mainnet-rpc.bnbchain.org'],
-            nativeCurrency: {
-                name: 'opBNB',
-                symbol: 'BNB',
-                decimals: 18
-            },
-            blockExplorerUrls: ['https://opbnb.bscscan.com']
-        };
-        
-        this.init();
-    }
-    
-    init() {
-        this.detectProvider();
-        this.setupEventListeners();
-        
-        // Check if previously connected
-        this.checkPreviousConnection();
-    }
-    
-    detectProvider() {
-        // КРИТИЧНО: SafePal ВСЕГДА приоритет над MetaMask
-        if (typeof window.safePal !== 'undefined' && window.safePal.ethereum) {
-            this.provider = window.safePal.ethereum;
-            console.log('SafePal detected (Priority)');
-        } else if (typeof window.ethereum !== 'undefined') {
-            this.provider = window.ethereum;
-            console.log('Web3 provider detected');
-        } else {
-            console.error('No Web3 provider found');
-        }
-    }
-
 class SafePalIntegration {
     constructor() {
         this.provider = null;
@@ -131,7 +60,7 @@ class SafePalIntegration {
             this.provider = null;
         }
         
-        if (this.provider) {
+        if (this.provider && typeof Web3 !== 'undefined') {
             this.web3 = new Web3(this.provider);
         }
     }
@@ -367,13 +296,18 @@ class SafePalIntegration {
     }
     
     async getBalance(address = null) {
-        if (!this.web3) throw new Error('Web3 not initialized');
+        if (!this.web3) return '0';
         
-        const addr = address || this.currentAccount;
-        if (!addr) throw new Error('No address provided');
-        
-        const balance = await this.web3.eth.getBalance(addr);
-        return this.web3.utils.fromWei(balance, 'ether');
+        try {
+            const addr = address || this.currentAccount;
+            if (!addr) return '0';
+            
+            const balance = await this.web3.eth.getBalance(addr);
+            return this.web3.utils.fromWei(balance, 'ether');
+        } catch (error) {
+            console.error('Failed to get balance:', error);
+            return '0';
+        }
     }
     
     async signMessage(message) {
@@ -387,6 +321,9 @@ class SafePalIntegration {
         });
     }
 }
+
+// Export for global use
+window.SafePalIntegration = SafePalIntegration;
 
 // Global Web3 Manager instance
 window.web3Manager = null;
