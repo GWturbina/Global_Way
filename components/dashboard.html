@@ -1,0 +1,424 @@
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <header class="dashboard-header">
+        <div class="user-info-section">
+            <h1 class="page-title" data-i18n="dashboard">Панель управления</h1>
+            <div class="connection-status">
+                <div id="connection-indicator" class="status-indicator connected">
+                    <span class="status-dot"></span>
+                    <span class="status-text" data-i18n="connected">Подключен</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu (будет показано на десктопе) -->
+    <nav id="main-navigation" class="desktop-navigation">
+        <div class="nav-item active" data-page="dashboard">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label" data-i18n="dashboard">Dashboard</div>
+        </div>
+        <div class="nav-item" data-page="partners">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label" data-i18n="partners">Partners</div>
+        </div>
+        <div class="nav-item" data-page="matrix">
+            <div class="nav-icon">🔢</div>
+            <div class="nav-label" data-i18n="matrix">Matrix</div>
+        </div>
+        <div class="nav-item" data-page="tokens">
+            <div class="nav-icon">🪙</div>
+            <div class="nav-label" data-i18n="tokens">Tokens</div>
+        </div>
+        <div class="nav-item" data-page="projects">
+            <div class="nav-icon">🚀</div>
+            <div class="nav-label" data-i18n="projects">Projects</div>
+        </div>
+        <div class="nav-item" data-page="admin" id="admin-nav-item" style="display: none;">
+            <div class="nav-icon">⚙️</div>
+            <div class="nav-label" data-i18n="admin">Admin</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- User Profile Section -->
+        <section class="user-profile-section">
+            <div class="profile-card">
+                <h2 class="section-title" data-i18n="userProfile">Профиль пользователя</h2>
+                
+                <div class="profile-info">
+                    <div class="info-row">
+                        <label class="info-label" data-i18n="walletAddress">Адрес кошелька:</label>
+                        <span id="wallet-address" class="info-value">-</span>
+                        <button id="copy-address-btn" class="copy-btn" title="Копировать">📋</button>
+                    </div>
+                    
+                    <div class="info-row">
+                        <label class="info-label" data-i18n="opbnbBalance">Баланс opBNB:</label>
+                        <span id="opbnb-balance" class="info-value balance">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <label class="info-label" data-i18n="userId">ID пользователя:</label>
+                        <span id="user-id" class="info-value">Генерируется...</span>
+                        <button id="copy-id-btn" class="copy-btn" title="Копировать">📋</button>
+                    </div>
+                    
+                    <div class="info-row">
+                        <label class="info-label" data-i18n="referralLink">Реферальная ссылка:</label>
+                        <span id="referral-link" class="info-value link">-</span>
+                        <button id="copy-link-btn" class="copy-btn" title="Копировать">📋</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Status Section -->
+        <section class="activity-section">
+            <div class="activity-card">
+                <h2 class="section-title" data-i18n="quarterlyActivity">Квартальная активность</h2>
+                
+                <div class="activity-info">
+                    <div class="activity-status">
+                        <span class="status-label" data-i18n="status">Статус:</span>
+                        <span id="activity-status" class="status">-</span>
+                    </div>
+                    
+                    <div class="activity-details">
+                        <div class="detail-item">
+                            <span class="detail-label" data-i18n="lastPayment">Последняя оплата:</span>
+                            <span id="last-activity" class="detail-value">-</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label" data-i18n="nextPayment">Следующая оплата:</span>
+                            <span id="next-activity" class="detail-value">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-action">
+                        <button id="pay-activity-btn" class="action-btn primary" disabled>
+                            <span class="btn-text">Загрузка...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Distribution Info -->
+                <div class="distribution-info">
+                    <h3 class="distribution-title" data-i18n="distributionBreakdown">Распределение средств</h3>
+                    <div class="distribution-items">
+                        <div class="distribution-item">
+                            <span class="distribution-percent">60%</span>
+                            <span class="distribution-label" data-i18n="marketingDistribution">Маркетинг (12 уровней)</span>
+                            <span class="distribution-amount">0.045 opBNB</span>
+                        </div>
+                        <div class="distribution-item">
+                            <span class="distribution-percent">30%</span>
+                            <span class="distribution-label" data-i18n="charityTechPlaces">Благотворительность/Техместа</span>
+                            <span class="distribution-amount">0.0225 opBNB</span>
+                        </div>
+                        <div class="distribution-item">
+                            <span class="distribution-percent">10%</span>
+                            <span class="distribution-label" data-i18n="developmentPools">Пулы развития</span>
+                            <span class="distribution-amount">0.0075 opBNB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Levels Management Section -->
+        <section class="levels-section">
+            <div class="levels-card">
+                <h2 class="section-title" data-i18n="levelsManagement">Управление уровнями</h2>
+                
+                <!-- Individual Level Buttons -->
+                <div class="individual-levels">
+                    <h3 class="subsection-title" data-i18n="individualLevels">Индивидуальные уровни</h3>
+                    <div class="levels-grid horizontal-scroll">
+                        <button class="level-btn" id="level-1-btn" data-level="1">
+                            <div class="level-number">1</div>
+                            <div class="level-price">0.0015 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-2-btn" data-level="2">
+                            <div class="level-number">2</div>
+                            <div class="level-price">0.003 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-3-btn" data-level="3">
+                            <div class="level-number">3</div>
+                            <div class="level-price">0.006 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-4-btn" data-level="4">
+                            <div class="level-number">4</div>
+                            <div class="level-price">0.012 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-5-btn" data-level="5">
+                            <div class="level-number">5</div>
+                            <div class="level-price">0.024 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-6-btn" data-level="6">
+                            <div class="level-number">6</div>
+                            <div class="level-price">0.048 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-7-btn" data-level="7">
+                            <div class="level-number">7</div>
+                            <div class="level-price">0.096 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-8-btn" data-level="8">
+                            <div class="level-number">8</div>
+                            <div class="level-price">0.192 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-9-btn" data-level="9">
+                            <div class="level-number">9</div>
+                            <div class="level-price">0.384 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-10-btn" data-level="10">
+                            <div class="level-number">10</div>
+                            <div class="level-price">0.768 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-11-btn" data-level="11">
+                            <div class="level-number">11</div>
+                            <div class="level-price">1.536 opBNB</div>
+                        </button>
+                        <button class="level-btn" id="level-12-btn" data-level="12">
+                            <div class="level-number">12</div>
+                            <div class="level-price">3.072 opBNB</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package Level Buttons -->
+                <div class="package-levels">
+                    <h3 class="subsection-title" data-i18n="packageLevels">Пакетные уровни</h3>
+                    <div class="package-grid">
+                        <button class="package-btn" id="bulk-3-btn" data-max-level="3">
+                            <div class="package-name" data-i18n="clientPackage">Клиент</div>
+                            <div class="package-levels-range">1-3 уровни</div>
+                            <div class="package-price">Расчет...</div>
+                        </button>
+                        <button class="package-btn" id="bulk-4-btn" data-max-level="4">
+                            <div class="package-name" data-i18n="miniAdminPackage">Мини-админ</div>
+                            <div class="package-levels-range">1-4 уровни</div>
+                            <div class="package-price">Расчет...</div>
+                        </button>
+                        <button class="package-btn" id="bulk-7-btn" data-max-level="7">
+                            <div class="package-name" data-i18n="adminPackage">Админ</div>
+                            <div class="package-levels-range">1-7 уровни</div>
+                            <div class="package-price">Расчет...</div>
+                        </button>
+                        <button class="package-btn" id="bulk-10-btn" data-max-level="10">
+                            <div class="package-name" data-i18n="superAdminPackage">Супер-админ</div>
+                            <div class="package-levels-range">1-10 уровни</div>
+                            <div class="package-price">Расчет...</div>
+                        </button>
+                        <button class="package-btn" id="bulk-12-btn" data-max-level="12">
+                            <div class="package-name" data-i18n="managerPackage">Менеджер</div>
+                            <div class="package-levels-range">1-12 уровни</div>
+                            <div class="package-price">Расчет...</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earnings Section -->
+        <section class="earnings-section">
+            <div class="earnings-card">
+                <h2 class="section-title" data-i18n="earningsByRanks">Доходы по рангам</h2>
+                
+                <div class="earnings-list">
+                    <div class="earning-item">
+                        <span class="rank-icon">🌟</span>
+                        <span class="rank-name" data-i18n="rank1">Новичок</span>
+                        <span class="earning-amount" id="rank-1-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🔍</span>
+                        <span class="rank-name" data-i18n="rank2">Исследователь</span>
+                        <span class="earning-amount" id="rank-2-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">💡</span>
+                        <span class="rank-name" data-i18n="rank3">Инноватор</span>
+                        <span class="earning-amount" id="rank-3-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🔧</span>
+                        <span class="rank-name" data-i18n="rank4">Техно-энтузиаст</span>
+                        <span class="earning-amount" id="rank-4-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🎓</span>
+                        <span class="rank-name" data-i18n="rank5">Крипто-ученик</span>
+                        <span class="earning-amount" id="rank-5-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">⛓️</span>
+                        <span class="rank-name" data-i18n="rank6">Блокчейн-адепт</span>
+                        <span class="earning-amount" id="rank-6-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🛠️</span>
+                        <span class="rank-name" data-i18n="rank7">Мастер смарт-контрактов</span>
+                        <span class="earning-amount" id="rank-7-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🌐</span>
+                        <span class="rank-name" data-i18n="rank8">Web3 Профессионал</span>
+                        <span class="earning-amount" id="rank-8-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🏗️</span>
+                        <span class="rank-name" data-i18n="rank9">Мета-архитектор</span>
+                        <span class="earning-amount" id="rank-9-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🤖</span>
+                        <span class="rank-name" data-i18n="rank10">AI-визионер</span>
+                        <span class="earning-amount" id="rank-10-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">⚡</span>
+                        <span class="rank-name" data-i18n="rank11">Квантовый лидер</span>
+                        <span class="earning-amount" id="rank-11-earnings">0 BNB</span>
+                    </div>
+                    <div class="earning-item">
+                        <span class="rank-icon">🌟</span>
+                        <span class="rank-name" data-i18n="rank12">Глобальный тех-титан</span>
+                        <span class="earning-amount" id="rank-12-earnings">0 BNB</span>
+                    </div>
+                    
+                    <div class="total-earning">
+                        <span class="total-icon">💰</span>
+                        <span class="total-label" data-i18n="totalEarnings">Общий доход</span>
+                        <span class="total-amount" id="total-earnings">0 BNB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokens Quick Info -->
+        <section class="tokens-section">
+            <div class="tokens-card">
+                <h2 class="section-title" data-i18n="tokensOverview">Токены GWT</h2>
+                
+                <div class="tokens-info">
+                    <div class="token-stat">
+                        <span class="stat-label" data-i18n="tokenBalance">Баланс токенов:</span>
+                        <span id="token-balance" class="stat-value">0 GWT</span>
+                    </div>
+                    
+                    <div class="token-stat">
+                        <span class="stat-label" data-i18n="tokenPrice">Текущая цена:</span>
+                        <span id="token-price" class="stat-value">0.001 opBNB</span>
+                    </div>
+                    
+                    <div class="token-stat">
+                        <span class="stat-label" data-i18n="totalValue">Общая стоимость:</span>
+                        <span id="token-total-value" class="stat-value">0 opBNB</span>
+                    </div>
+                </div>
+                
+                <div class="tokens-action">
+                    <button class="action-btn secondary" onclick="window.globalWayApp.navigateToPage('tokens')">
+                        <span data-i18n="manageTokens">Управлять токенами</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transaction History -->
+        <section class="history-section">
+            <div class="history-card">
+                <h2 class="section-title" data-i18n="transactionHistory">История транзакций</h2>
+                
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="transactionNumber">№</th>
+                                <th data-i18n="transactionLevel">Уровень</th>
+                                <th data-i18n="transactionAmount">Сумма</th>
+                                <th data-i18n="transactionDate">Дата</th>
+                                <th data-i18n="transactionHash">Hash</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-table-body">
+                            <tr class="no-transactions">
+                                <td colspan="5" data-i18n="noTransactions">Транзакций пока нет</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="history-pagination">
+                    <button class="pagination-btn" id="prev-page-btn" disabled>‹ Назад</button>
+                    <span class="pagination-info">
+                        <span id="current-page">1</span> / <span id="total-pages">1</span>
+                    </span>
+                    <button class="pagination-btn" id="next-page-btn" disabled>Вперед ›</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="modal" style="display: none;">
+        <div class="modal-content cosmic-modal">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title" data-i18n="registration">Регистрация</h2>
+            <div class="registration-form">
+                <p class="registration-text" data-i18n="registrationText">
+                    Добро пожаловать в GlobalWay! Для продолжения необходимо зарегистрироваться.
+                </p>
+                
+                <div class="sponsor-input-group">
+                    <label for="sponsor-address" data-i18n="sponsorAddress">Адрес спонсора:</label>
+                    <input type="text" id="sponsor-address" placeholder="0x..." readonly>
+                    <small class="input-help" data-i18n="sponsorHelp">
+                        Адрес будет заполнен автоматически по реферальной ссылке
+                    </small>
+                </div>
+                
+                <div class="registration-actions">
+                    <button id="register-btn" class="action-btn primary">
+                        <span data-i18n="register">Зарегистрироваться</span>
+                    </button>
+                    <button class="action-btn secondary" onclick="this.closest('.modal').style.display='none'">
+                        <span data-i18n="cancel">Отмена</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Level Purchase Confirmation Modal -->
+    <div id="level-confirmation-modal" class="modal">
+        <div class="modal-content cosmic-modal">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title" data-i18n="confirmPurchase">Подтверждение покупки</h2>
+            <div class="confirmation-content">
+                <p id="confirmation-text" class="confirmation-text"></p>
+                <div class="confirmation-details">
+                    <div class="detail-row">
+                        <span data-i18n="level">Уровень:</span>
+                        <span id="confirm-level">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span data-i18n="price">Цена:</span>
+                        <span id="confirm-price">-</span>
+                    </div>
+                </div>
+                <div class="confirmation-actions">
+                    <button id="confirm-purchase-btn" class="action-btn primary">
+                        <span data-i18n="confirm">Подтвердить</span>
+                    </button>
+                    <button class="action-btn secondary" onclick="this.closest('.modal').style.display='none'">
+                        <span data-i18n="cancel">Отмена</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
