@@ -18,6 +18,63 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Planet Modal */
+.planet-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.planet-modal-content {
+    background: var(--color-bg-modal);
+    margin: 10% auto;
+    padding: var(--spacing-xl);
+    border: 2px solid var(--color-border-gold);
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.planet-modal-close {
+    color: var(--color-text-gold);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: var(--spacing-lg);
+    top: var(--spacing-lg);
+}
+
+.planet-modal-close:hover {
+    color: var(--color-primary-gold);
+}
+
+.planet-modal-title {
+    color: var(--color-text-gold);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.planet-modal-text {
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    font-size: var(--font-size-md);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Landing Page Styles */
 .landing-page {
     height: 100vh;
