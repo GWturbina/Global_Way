@@ -54,10 +54,10 @@ class LandingController {
                 element: planet,
                 x: startX,
                 y: startY,
-                speedX: (Math.random() - 0.5) * 1.5, // Уменьшил скорость
-                speedY: (Math.random() - 0.5) * 1.5,
+                speedX: (Math.random() - 0.5) * 0.5, // УМЕНЬШИЛ СКОРОСТЬ
+                speedY: (Math.random() - 0.5) * 0.5, // УМЕНЬШИЛ СКОРОСТЬ
                 rotation: 0,
-                rotationSpeed: (Math.random() - 0.5) * 2
+                rotationSpeed: (Math.random() - 0.5) * 0.5 // УМЕНЬШИЛ СКОРОСТЬ
             };
             
             // Позиционирование
