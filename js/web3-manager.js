@@ -1,3 +1,31 @@
+// Добавить в самое начало файла
+window.SafePalIntegration = window.SafePalIntegration || class SafePalIntegration {
+    constructor() {
+        console.log('SafePal Integration placeholder loaded');
+    }
+    
+    async detectAndConnect() {
+        console.log('SafePal connection - demo mode');
+        return null;
+    }
+    
+    getCurrentAccount() {
+        return null;
+    }
+    
+    getWeb3() {
+        return null;
+    }
+    
+    async getBalance() {
+        return '0';
+    }
+    
+    async checkPreviousConnection() {
+        return false;
+    }
+};
+
 // Web3 Integration for GlobalWay DApp
 class SafePalIntegration {
     constructor() {
