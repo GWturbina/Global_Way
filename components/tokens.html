@@ -1,0 +1,437 @@
+<div class="tokens-container">
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-title" data-i18n="tokensManagement">Управление токенами GWT</h1>
+        <div class="page-subtitle" data-i18n="tokensSubtitle">
+            Торговля, баланс и управление токенами GlobalWay
+        </div>
+    </header>
+
+    <!-- Token Balance Section -->
+    <section class="token-balance-section">
+        <div class="token-balance-card">
+            <h2 class="section-title" data-i18n="tokenBalance">Баланс токенов</h2>
+            
+            <div class="balance-display">
+                <div class="balance-main">
+                    <div class="balance-amount">
+                        <span id="token-balance-display" class="balance-number">0</span>
+                        <span class="balance-currency">GWT</span>
+                    </div>
+                    <div class="balance-value">
+                        ≈ <span id="token-value-display">0</span> opBNB
+                    </div>
+                </div>
+                
+                <div class="balance-actions">
+                    <button id="add-token-btn" class="action-btn secondary">
+                        <span data-i18n="addToWallet">Добавить в кошелек</span>
+                    </button>
+                    <button id="refresh-balance-btn" class="action-btn secondary">
+                        <span data-i18n="refresh">Обновить</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Price Info -->
+    <section class="token-price-section">
+        <div class="token-price-card">
+            <h2 class="section-title" data-i18n="tokenPrice">Цена токена</h2>
+            
+            <div class="price-display">
+                <div class="current-price">
+                    <span id="current-token-price">0.001</span>
+                    <span class="price-currency">opBNB</span>
+                </div>
+                
+                <div class="price-status">
+                    <div class="status-item">
+                        <span class="status-label" data-i18n="tradingStatus">Статус торговли:</span>
+                        <span id="trading-status" class="status-value">Проверка...</span>
+                    </div>
+                    
+                    <div class="status-item">
+                        <span class="status-label" data-i18n="minSellPrice">Мин. цена продажи:</span>
+                        <span class="status-value">0.0001 opBNB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Section -->
+    <section class="trading-section">
+        <div class="trading-card">
+            <h2 class="section-title" data-i18n="tokenTrading">Торговля токенами</h2>
+            
+            <div class="trading-tabs">
+                <button class="trading-tab active" data-tab="buy">
+                    <span data-i18n="buyTokens">Купить</span>
+                </button>
+                <button class="trading-tab" data-tab="sell">
+                    <span data-i18n="sellTokens">Продать</span>
+                </button>
+            </div>
+            
+            <!-- Buy Tab -->
+            <div id="buy-tab" class="trading-tab-content active">
+                <div class="trading-form">
+                    <div class="input-group">
+                        <label for="buy-amount" data-i18n="tokenAmount">Количество токенов:</label>
+                        <div class="input-with-max">
+                            <input type="number" id="buy-amount" placeholder="0" min="0" step="0.000001">
+                            <span class="input-currency">GWT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-info">
+                        <div class="calc-row">
+                            <span data-i18n="price">Цена:</span>
+                            <span id="buy-price">0 opBNB</span>
+                        </div>
+                        <div class="calc-row">
+                            <span data-i18n="commission">Комиссия (10%):</span>
+                            <span id="buy-commission">0 opBNB</span>
+                        </div>
+                        <div class="calc-row">
+                            <span data-i18n="gasReserve">Резерв на газ:</span>
+                            <span>0.0001 opBNB</span>
+                        </div>
+                        <div class="calc-row total">
+                            <span data-i18n="totalCost">Общая стоимость:</span>
+                            <span id="buy-total">0 opBNB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trading-actions">
+                        <button id="calculate-buy-btn" class="action-btn secondary">
+                            <span data-i18n="calculateCost">Рассчитать</span>
+                        </button>
+                        <button id="buy-tokens-btn" class="action-btn primary" disabled>
+                            <span data-i18n="buyTokens">Купить токены</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sell Tab -->
+            <div id="sell-tab" class="trading-tab-content">
+                <div class="trading-form">
+                    <div class="input-group">
+                        <label for="sell-amount" data-i18n="tokenAmount">Количество токенов:</label>
+                        <div class="input-with-max">
+                            <input type="number" id="sell-amount" placeholder="0" min="0" step="0.000001">
+                            <span class="input-currency">GWT</span>
+                            <button id="max-sell-btn" class="max-btn">MAX</button>
+                        </div>
+                    </div>
+                    
+                    <div class="calculation-info">
+                        <div class="calc-row">
+                            <span data-i18n="salePrice">Цена продажи:</span>
+                            <span id="sell-price">0 opBNB</span>
+                        </div>
+                        <div class="calc-row">
+                            <span data-i18n="commission">Комиссия (10%):</span>
+                            <span id="sell-commission">0 opBNB</span>
+                        </div>
+                        <div class="calc-row">
+                            <span data-i18n="gasReserve">Резерв на газ:</span>
+                            <span>0.0001 opBNB</span>
+                        </div>
+                        <div class="calc-row total">
+                            <span data-i18n="totalReceive">К получению:</span>
+                            <span id="sell-total">0 opBNB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="trading-actions">
+                        <button id="calculate-sell-btn" class="action-btn secondary">
+                            <span data-i18n="calculateReturn">Рассчитать</span>
+                        </button>
+                        <button id="sell-tokens-btn" class="action-btn primary" disabled>
+                            <span data-i18n="sellTokens">Продать токены</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="trading-notice">
+                <div class="notice-icon">ℹ️</div>
+                <div class="notice-text" data-i18n="tradingNotice">
+                    Торговля токенами доступна при цене от 0.01¢. Комиссия 10% при покупке и продаже.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Pools Section -->
+    <section class="token-pools-section">
+        <div class="token-pools-card">
+            <h2 class="section-title" data-i18n="tokenPools">Пулы токенов</h2>
+            
+            <div class="pools-grid">
+                <div class="pool-item">
+                    <div class="pool-header">
+                        <div class="pool-name" data-i18n="tokenomicsPool">Пул токеномики</div>
+                        <div class="pool-percentage">80%</div>
+                    </div>
+                    <div class="pool-info">
+                        <div class="pool-amount">800 млн GWT</div>
+                        <div class="pool-status" data-i18n="available">Доступно</div>
+                    </div>
+                </div>
+                
+                <div class="pool-item">
+                    <div class="pool-header">
+                        <div class="pool-name" data-i18n="airdropPool">Пул раздачи</div>
+                        <div class="pool-percentage">10%</div>
+                    </div>
+                    <div class="pool-info">
+                        <div class="pool-amount">100 млн GWT</div>
+                        <div class="pool-status coming-soon" data-i18n="comingSoon">Скоро</div>
+                    </div>
+                </div>
+                
+                <div class="pool-item">
+                    <div class="pool-header">
+                        <div class="pool-name" data-i18n="teamPool">Командный пул</div>
+                        <div class="pool-percentage">5%</div>
+                    </div>
+                    <div class="pool-info">
+                        <div class="pool-amount">50 млн GWT</div>
+                        <div class="pool-status locked" data-i18n="locked">Заблокирован</div>
+                    </div>
+                </div>
+                
+                <div class="pool-item">
+                    <div class="pool-header">
+                        <div class="pool-name" data-i18n="reservePool">Резервный пул</div>
+                        <div class="pool-percentage">5%</div>
+                    </div>
+                    <div class="pool-info">
+                        <div class="pool-amount">50 млн GWT</div>
+                        <div class="pool-status coming-soon" data-i18n="comingSoon">Вскоре</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Rewards Section -->
+    <section class="token-rewards-section">
+        <div class="token-rewards-card">
+            <h2 class="section-title" data-i18n="levelRewards">Вознаграждения за уровни</h2>
+            
+            <div class="rewards-grid horizontal-scroll">
+                <div class="reward-item">
+                    <div class="reward-level">1</div>
+                    <div class="reward-amount">5 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">2</div>
+                    <div class="reward-amount">5 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">3</div>
+                    <div class="reward-amount">10 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">4</div>
+                    <div class="reward-amount">15 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">5</div>
+                    <div class="reward-amount">35 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">6</div>
+                    <div class="reward-amount">75 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">7</div>
+                    <div class="reward-amount">150 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">8</div>
+                    <div class="reward-amount">300 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">9</div>
+                    <div class="reward-amount">600 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">10</div>
+                    <div class="reward-amount">1200 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">11</div>
+                    <div class="reward-amount">2400 GWT</div>
+                </div>
+                <div class="reward-item">
+                    <div class="reward-level">12</div>
+                    <div class="reward-amount">4500 GWT</div>
+                </div>
+            </div>
+            
+            <div class="total-rewards">
+                <span data-i18n="totalPossibleRewards">Максимально возможно:</span>
+                <span class="total-amount">9,300 GWT</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Statistics -->
+    <section class="token-statistics-section">
+        <div class="token-statistics-card">
+            <h2 class="section-title" data-i18n="tokenStatistics">Статистика токенов</h2>
+            
+            <div class="statistics-grid">
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="totalSupply">Общий запас</div>
+                    <div class="statistic-value" id="total-supply">1,000,000,000 GWT</div>
+                </div>
+                
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="circulatingSupply">Оборотный запас</div>
+                    <div class="statistic-value" id="circulating-supply">0 GWT</div>
+                </div>
+                
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="burnedTokens">Сожженные токены</div>
+                    <div class="statistic-value" id="burned-tokens">0 GWT</div>
+                </div>
+                
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="marketCap">Рыночная капитализация</div>
+                    <div class="statistic-value" id="market-cap">$0</div>
+                </div>
+                
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="tradingVolume">Объем торговли</div>
+                    <div class="statistic-value" id="trading-volume">0 opBNB</div>
+                </div>
+                
+                <div class="statistic-item">
+                    <div class="statistic-label" data-i18n="holdersCount">Количество держателей</div>
+                    <div class="statistic-value" id="holders-count">0</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token History -->
+    <section class="token-history-section">
+        <div class="token-history-card">
+            <h2 class="section-title" data-i18n="tokenHistory">История токенов</h2>
+            
+            <div class="history-filters">
+                <div class="filter-group">
+                    <label for="history-type" data-i18n="transactionType">Тип транзакции:</label>
+                    <select id="history-type" class="filter-select">
+                        <option value="all" data-i18n="allTransactions">Все транзакции</option>
+                        <option value="received" data-i18n="received">Получено</option>
+                        <option value="purchased" data-i18n="purchased">Куплено</option>
+                        <option value="sold" data-i18n="sold">Продано</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="history-period" data-i18n="period">Период:</label>
+                    <select id="history-period" class="filter-select">
+                        <option value="all" data-i18n="allTime">Все время</option>
+                        <option value="week" data-i18n="lastWeek">Последняя неделя</option>
+                        <option value="month" data-i18n="lastMonth">Последний месяц</option>
+                        <option value="quarter" data-i18n="lastQuarter">Последний квартал</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="history-table-container">
+                <table class="token-history-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="date">Дата</th>
+                            <th data-i18n="type">Тип</th>
+                            <th data-i18n="level">Уровень</th>
+                            <th data-i18n="amount">Количество</th>
+                            <th data-i18n="status">Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody id="token-history-body">
+                        <tr class="no-data">
+                            <td colspan="5" data-i18n="loadingHistory">Загрузка истории...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Info -->
+    <section class="contract-info-section">
+        <div class="contract-info-card">
+            <h2 class="section-title" data-i18n="contractInformation">Информация о контракте</h2>
+            
+            <div class="contract-details">
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="contractAddress">Адрес контракта:</span>
+                    <span class="detail-value">0x5Bf1b9edD3914f546AC02cf35CC285E640Cb68Fc</span>
+                    <button class="copy-btn" data-copy="0x5Bf1b9edD3914f546AC02cf35CC285E640Cb68Fc">📋</button>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="tokenName">Название токена:</span>
+                    <span class="detail-value">Global Way Token</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="tokenSymbol">Символ токена:</span>
+                    <span class="detail-value">GWT</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="decimals">Десятичные знаки:</span>
+                    <span class="detail-value">18</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="network">Сеть:</span>
+                    <span class="detail-value">opBNB</span>
+                </div>
+            </div>
+            
+            <div class="contract-actions">
+                <button id="view-explorer-btn" class="action-btn secondary">
+                    <span data-i18n="viewOnExplorer">Просмотреть в Explorer</span>
+                </button>
+                <button id="add-to-wallet-btn" class="action-btn secondary">
+                    <span data-i18n="addToWallet">Добавить в кошелек</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trade Confirmation Modal -->
+    <div id="trade-confirmation-modal" class="modal">
+        <div class="modal-content cosmic-modal">
+            <span class="modal-close">&times;</span>
+            <h2 class="modal-title" data-i18n="confirmTrade">Подтверждение сделки</h2>
+            <div class="trade-confirmation-content">
+                <div id="trade-details" class="trade-details">
+                    <!-- Details will be populated dynamically -->
+                </div>
+                <div class="confirmation-actions">
+                    <button id="confirm-trade-btn" class="action-btn primary">
+                        <span data-i18n="confirm">Подтвердить</span>
+                    </button>
+                    <button class="action-btn secondary" onclick="this.closest('.modal').style.display='none'">
+                        <span data-i18n="cancel">Отмена</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
